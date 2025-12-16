@@ -1,0 +1,33 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "name": "seomachine",
+  "buildCommand": "pip install -r data_sources/requirements.txt",
+  "outputDirectory": ".",
+  "framework": null,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        }
+      ]
+    }
+  ],
+  "env": {
+    "GA4_PROPERTY_ID": "@ga4_property_id",
+    "GA4_CREDENTIALS_PATH": "@ga4_credentials_path",
+    "GSC_SITE_URL": "@gsc_site_url",
+    "GSC_CREDENTIALS_PATH": "@gsc_credentials_path",
+    "DATAFORSEO_LOGIN": "@dataforseo_login",
+    "DATAFORSEO_PASSWORD": "@dataforseo_password",
+    "COMPANY_NAME": "@company_name",
+    "COMPANY_DOMAIN": "@company_domain"
+  }
+}
