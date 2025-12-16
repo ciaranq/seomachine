@@ -3,6 +3,9 @@
 ## Project Overview
 SEO Machine is a Claude Code workspace for creating long-form, SEO-optimized blog content. It provides custom commands, specialized agents, and data integrations.
 
+**Owner:** ciaranq/seomachine
+**Upstream:** TheCraigHewitt/seomachine (fetch-only, no push)
+
 ## Quick Start Commands
 - `/research [topic]` - Research keywords and competitors
 - `/write [topic]` - Create SEO-optimized article (2000-3000+ words)
@@ -18,6 +21,7 @@ seomachine/
 ├── .claude/agents/       # Specialized analysis agents
 ├── context/              # Brand voice, style guide, SEO guidelines
 ├── data_sources/         # Analytics integrations (GA4, GSC, DataForSEO)
+│   └── modules/          # Python analysis modules (tested & working)
 ├── topics/               # Raw topic ideas
 ├── research/             # Research briefs and analysis
 ├── drafts/               # Work in progress articles
@@ -42,15 +46,34 @@ seomachine/
 - **Editor** - Human-sounding content transformation
 - **Performance** - Analytics-driven prioritization
 
+## Python Analysis Modules
+All modules tested and working (Python 3.9+):
+
+| Module | Purpose |
+|--------|---------|
+| `readability_scorer.py` | Flesch scores, grade levels, passive voice |
+| `keyword_analyzer.py` | Density, stuffing detection, LSI keywords |
+| `seo_quality_rater.py` | 0-100 SEO scoring with category breakdown |
+| `search_intent_analyzer.py` | Classifies informational/commercial/transactional/navigational |
+| `content_length_comparator.py` | SERP competitor word count analysis |
+| `content_scrubber.py` | AI watermark removal |
+
+Install dependencies: `pip3 install -r data_sources/requirements.txt`
+
 ## Development Notes
-- Python dependencies in `data_sources/requirements.txt`
+- Python 3.9+ required
 - API credentials go in `.env` (never commit this)
 - See `examples/castos/` for reference implementation
 
+## Git Workflow
+- **origin** (ciaranq/seomachine): Full push/pull access
+- **upstream** (TheCraigHewitt/seomachine): Fetch-only, push disabled
+- Pull upstream updates: `git fetch upstream && git merge upstream/main`
+
 ## Deployment
 - Target: Vercel
-- Branch: main (your customized version)
-- Upstream: TheCraigHewitt/seomachine (fetch only)
+- Config: `vercel.json`
+- Environment variables configured for GA4, GSC, DataForSEO
 
 ## Content Quality Standards
 - Minimum 2,000 words (2,500-3,000+ preferred)
